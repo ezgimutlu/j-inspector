@@ -1,13 +1,31 @@
 [ {
+  "type" : "LONG_METHOD",
+  "file" : "TestClass.java",
+  "line" : 28,
+  "severity" : "HIGH",
+  "message" : "maintenanceNightmare has 33 lines"
+}, {
   "type" : "CYCLOMATIC_COMPLEXITY",
   "file" : "TestClass.java",
   "line" : 5,
   "severity" : "MEDIUM",
   "message" : "crazyMethod complexity = 11"
 }, {
+  "type" : "CYCLOMATIC_COMPLEXITY",
+  "file" : "TestClass.java",
+  "line" : 28,
+  "severity" : "MEDIUM",
+  "message" : "maintenanceNightmare complexity = 9"
+}, {
   "type" : "EMPTY_CATCH_BLOCK",
   "file" : "TestClass.java",
-  "line" : 31,
+  "line" : 48,
+  "severity" : "CRITICAL",
+  "message" : "Boş catch bloğu tespit edildi. Hatalar sessizce yutulmamalı!"
+}, {
+  "type" : "EMPTY_CATCH_BLOCK",
+  "file" : "TestClass.java",
+  "line" : 64,
   "severity" : "CRITICAL",
   "message" : "Boş catch bloğu tespit edildi. Hatalar sessizce yutulmamalı!"
 } ]
