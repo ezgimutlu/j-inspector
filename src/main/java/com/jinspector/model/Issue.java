@@ -15,13 +15,16 @@ public class Issue {
         this.severity = severity;
         this.message = message;
     }
+    // JSON çıktısı için Getter'lar şarttır
+    public String getType() { return type; }
+    public String getFile() { return file; }
+    public int getLine() { return line; }
+    public Severity getSeverity() { return severity; }
+    public String getMessage() { return message; }
 
     @Override
     public String toString() {
-        return "[" + severity + "] " + type +
-                " | " + file +
-                " : line " + line +
-                " | " + message;
+        return String.format("[%s] %-15s | %s : line %-4d | %s",severity,type,file,line,message);
     }
 }
 

@@ -1,5 +1,7 @@
 package com.jinspector.analyzer;
 
+import com.github.javaparser.ast.expr.BinaryExpr;
+import com.github.javaparser.ast.expr.BinaryExpr.Operator;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.stmt.CatchClause;
@@ -55,7 +57,11 @@ public class CyclomaticComplexityAnalyzer implements Analyzer {
         complexity += method.findAll(SwitchEntry.class).size();
         complexity += method.findAll(CatchClause.class).size();
 
-        return complexity;
+        long operatorCount = method.findAll(BinaryExpr.class).stream()
+                .filter(be -> be.getOperator() == Operator.AND || be.getOperator() == Operator.OR)
+                .count();
+
+        return complexity+(int) operatorCount;
     }
 }
 
