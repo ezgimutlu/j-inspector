@@ -1,0 +1,13 @@
+[ {
+  "type" : "CYCLOMATIC_COMPLEXITY",
+  "file" : "TestClass.java",
+  "line" : 5,
+  "severity" : "MEDIUM",
+  "message" : "crazyMethod complexity = 11"
+}, {
+  "type" : "EMPTY_CATCH_BLOCK",
+  "file" : "TestClass.java",
+  "line" : 31,
+  "severity" : "CRITICAL",
+  "message" : "Boş catch bloğu tespit edildi. Hatalar sessizce yutulmamalı!"
+} ]

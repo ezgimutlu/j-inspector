@@ -3,6 +3,7 @@ package com.jinspector.parser;
 import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.jinspector.analyzer.Analyzer;
+import com.jinspector.analyzer.EmptyCatchAnalyzer;
 import com.jinspector.analyzer.MethodLengthAnalyzer;
 import com.jinspector.analyzer.CyclomaticComplexityAnalyzer;
 import com.jinspector.model.Issue;
@@ -15,7 +16,8 @@ public class JavaSourceParser {
 
     private final List<Analyzer> analyzers = List.of(
             new MethodLengthAnalyzer(),
-            new CyclomaticComplexityAnalyzer()
+            new CyclomaticComplexityAnalyzer(),
+            new EmptyCatchAnalyzer()
     );
 
     // 2. Listeyi burada "new ArrayList<>()" diyerek oluşturuyoruz

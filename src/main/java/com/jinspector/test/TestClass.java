@@ -25,6 +25,13 @@ public class TestClass {
             }
         }
     }
+    public void dangerousMethod() {
+        try {
+            int x = 10 / 0; // Hata verecek
+        } catch (Exception e) {
+            // İçi boş, J-Inspector bunu yakalamalı!
+        }
+    }
 }
 
 
