@@ -1,0 +1,37 @@
+name: J-Inspector CI/CD & Self-Analysis Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-inspect:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v3
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+
+    - name: Build Fat-JAR with Maven
+      run: mvn clean package -DskipTests
+
+    - name: Run J-Inspector Self-Inspection
+      run: |
+        java -jar target/j-inspector-3.0-RELEASE-jar-with-dependencies.jar -p . -f all -o jinspector_ci_report
+
+    - name: Upload Inspection Reports as Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: j-inspector-reports
+        path: |
+          jinspector_ci_report.html
+          jinspector_ci_report.json
