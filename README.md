@@ -2,6 +2,7 @@
 
 [![Java](https://img.shields.io/badge/Java-17%2B-orange.svg)](https://www.oracle.com/java/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Presentation](https://img.shields.io/badge/Presentation-Slide_Deck-purple.svg)](docs/presentation.html)
 [![Build](https://img.shields.io/badge/Build-Passing-brightgreen.svg)]()
 
 **J-Inspector**, Java projelerinde kod kalitesini, sürdürülebilirliği ve güvenlik açıklarını analiz eden AST (Abstract Syntax Tree) tabanlı, yüksek performanslı bir statik kod analiz aracıdır.
@@ -12,6 +13,7 @@
 
 - 🚀 **Yüksek Performans (Multithreading):** Paralel tarama altyapısı sayesinde binlerce satırlık kod tabanlarını milisaniyeler seviyesinde tarar.
 - 🎨 **Modern HTML Dashboard:** Analiz sonuçlarını detaylı, filtrelemeye uygun ve dark-mode temalı etkileşimli bir dashboard üzerinde raporlar.
+- 📊 **Executive Presentation:** Projenin teknik mimarisini ve kurumsal sunumunu barındıran etkileşimli [Slide Deck](docs/presentation.html).
 - 🛠 **Zengin Analiz Kuralları:**
     - 🛑 `EMPTY_CATCH_BLOCK` (Critical): Sessizce yutulan hataları ve boş catch bloklarını yakalar.
     - ⚠️ `LONG_METHOD` (High): Okunabilirliği düşüren aşırı uzun metotları tespit eder.
@@ -35,6 +37,7 @@
 - **Komut Satırı Arayüzü:** Picocli
 - **Raporlama:** Custom HTML/CSS Exporter & JSON Writer
 - **Derleme Aracı:** Apache Maven
+- **Geliştirici & Eser Sahibi:** Halise Ezgi Mutlu
 
 ---
 
