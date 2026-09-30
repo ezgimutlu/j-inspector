@@ -2,14 +2,13 @@ package com.jinspector.parser;
 
 import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
-import com.jinspector.analyzer.Analyzer;
-import com.jinspector.analyzer.EmptyCatchAnalyzer;
-import com.jinspector.analyzer.MethodLengthAnalyzer;
-import com.jinspector.analyzer.CyclomaticComplexityAnalyzer;
+import com.jinspector.analyzer.*;
 import com.jinspector.model.Issue;
+
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList; // 1. Bunu eklemeyi unutma!
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class JavaSourceParser {
@@ -17,31 +16,38 @@ public class JavaSourceParser {
     private final List<Analyzer> analyzers = List.of(
             new MethodLengthAnalyzer(),
             new CyclomaticComplexityAnalyzer(),
-            new EmptyCatchAnalyzer()
+            new EmptyCatchAnalyzer(),
+            new MagicNumberAnalyzer(),
+            new TooManyParametersAnalyzer()
     );
 
-    // 2. Listeyi burada "new ArrayList<>()" diyerek oluşturuyoruz
-    private final List<Issue> allIssues = new ArrayList<>();
+    // Thread-safe liste yapısı
+    private final List<Issue> allIssues = Collections.synchronizedList(new ArrayList<>());
 
     public void parse(String path) {
         File root = new File(path);
         if (!root.exists()) {
-            System.out.println("Path not found: " + path);
+            System.err.println("❌ Yol bulunamadı: " + path);
             return;
         }
-        scan(root);
+
+        List<File> javaFiles = new ArrayList<>();
+        collectJavaFiles(root, javaFiles);
+
+        // Paralel iş parçacıkları (Multithreading) ile hızlı tarama
+        javaFiles.parallelStream().forEach(this::parseJavaFile);
     }
 
-    private void scan(File file) {
+    private void collectJavaFiles(File file, List<File> javaFiles) {
         if (file.isDirectory()) {
             File[] files = file.listFiles();
             if (files != null) {
                 for (File f : files) {
-                    scan(f);
+                    collectJavaFiles(f, javaFiles);
                 }
             }
         } else if (file.getName().endsWith(".java")) {
-            parseJavaFile(file);
+            javaFiles.add(file);
         }
     }
 
@@ -50,17 +56,15 @@ public class JavaSourceParser {
             CompilationUnit cu = StaticJavaParser.parse(file);
             for (Analyzer analyzer : analyzers) {
                 List<Issue> issues = analyzer.analyze(cu, file.getName());
-                allIssues.addAll(issues); // Artık burası hata vermez
-                issues.forEach(System.out::println); // Ekrana da yazdıralım
+                allIssues.addAll(issues);
             }
         } catch (IOException e) {
-            System.out.println("Failed to parse: " + file.getPath());
+            System.err.println("❌ Dosya ayrıştırılamadı: " + file.getPath());
         }
     }
 
-    // 3. DOĞRU GETTER: Listeyi Main'den çağırmak için bu metodu kullanacağız
     public List<Issue> getAllIssues() {
-        return allIssues;
+        return new ArrayList<>(allIssues);
     }
 }
 

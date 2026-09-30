@@ -1,5 +1,41 @@
 [ {
   "type" : "LONG_METHOD",
+  "file" : "HTMLReportExporter.java",
+  "line" : 12,
+  "severity" : "HIGH",
+  "message" : "exportToHtml has 43 lines"
+}, {
+  "type" : "MAGIC_NUMBER",
+  "file" : "MethodLengthAnalyzer.java",
+  "line" : 13,
+  "severity" : "LOW",
+  "message" : "Büyülü sayı (Magic Number) tespit edildi: 30. Lütfen sabit (constant/final) olarak tanımlayın."
+}, {
+  "type" : "LONG_METHOD",
+  "file" : "Main.java",
+  "line" : 27,
+  "severity" : "HIGH",
+  "message" : "call has 32 lines"
+}, {
+  "type" : "CYCLOMATIC_COMPLEXITY",
+  "file" : "Main.java",
+  "line" : 27,
+  "severity" : "MEDIUM",
+  "message" : "call complexity = 6"
+}, {
+  "type" : "MAGIC_NUMBER",
+  "file" : "TooManyParametersAnalyzer.java",
+  "line" : 13,
+  "severity" : "LOW",
+  "message" : "Büyülü sayı (Magic Number) tespit edildi: 4. Lütfen sabit (constant/final) olarak tanımlayın."
+}, {
+  "type" : "MAGIC_NUMBER",
+  "file" : "CyclomaticComplexityAnalyzer.java",
+  "line" : 22,
+  "severity" : "LOW",
+  "message" : "Büyülü sayı (Magic Number) tespit edildi: 5. Lütfen sabit (constant/final) olarak tanımlayın."
+}, {
+  "type" : "LONG_METHOD",
   "file" : "TestClass.java",
   "line" : 28,
   "severity" : "HIGH",
@@ -28,4 +64,28 @@
   "line" : 64,
   "severity" : "CRITICAL",
   "message" : "Boş catch bloğu tespit edildi. Hatalar sessizce yutulmamalı!"
+}, {
+  "type" : "MAGIC_NUMBER",
+  "file" : "TestClass.java",
+  "line" : 36,
+  "severity" : "LOW",
+  "message" : "Büyülü sayı (Magic Number) tespit edildi: 3. Lütfen sabit (constant/final) olarak tanımlayın."
+}, {
+  "type" : "MAGIC_NUMBER",
+  "file" : "TestClass.java",
+  "line" : 40,
+  "severity" : "LOW",
+  "message" : "Büyülü sayı (Magic Number) tespit edildi: 100. Lütfen sabit (constant/final) olarak tanımlayın."
+}, {
+  "type" : "MAGIC_NUMBER",
+  "file" : "TestClass.java",
+  "line" : 41,
+  "severity" : "LOW",
+  "message" : "Büyülü sayı (Magic Number) tespit edildi: 10. Lütfen sabit (constant/final) olarak tanımlayın."
+}, {
+  "type" : "MAGIC_NUMBER",
+  "file" : "TestClass.java",
+  "line" : 63,
+  "severity" : "LOW",
+  "message" : "Büyülü sayı (Magic Number) tespit edildi: 10. Lütfen sabit (constant/final) olarak tanımlayın."
 } ]

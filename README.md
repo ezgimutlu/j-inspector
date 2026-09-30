@@ -1,46 +1,45 @@
-# J-Inspector 🔍
+# 🔍 J-Inspector: Static Code Analysis Engine (v3.0)
 
-**J-Inspector**, Java kaynak kodlarını derlemeye gerek duymadan analiz eden, kod kalitesini ve karmaşıklığını ölçen hafif sıklet bir **Statik Kod Analiz** aracıdır.
+[![Java](https://img.shields.io/badge/Java-17%2B-orange.svg)](https://www.oracle.com/java/)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Build](https://img.shields.io/badge/Build-Passing-brightgreen.svg)]()
 
----
-
-## 🚀 Öne Çıkan Özellikler
-
-* **Döngüsel Karmaşıklık (Cyclomatic Complexity):** Metotların karar yollarını analiz eder ve riskli yapıları raporlar.
-* **Metot Uzunluğu Tespiti (Long Method):** Okunması zor, aşırı uzun metotları işaretler.
-* **Boş Catch Bloğu Denetimi (Empty Catch Block):** Hataların sessizce yutulduğu tehlikeli kod bloklarını yakalar.
-* **Hibrit Tarama Desteği:** İster tüm projeyi, ister tek bir `.java` dosyasını analiz edebilirsiniz.
-* **JSON Raporlama:** Analiz sonuçlarını `jinspector_report.json` dosyasına aktarır.
+**J-Inspector**, Java projelerinde kod kalitesini, sürdürülebilirliği ve güvenlik açıklarını analiz eden AST (Abstract Syntax Tree) tabanlı, yüksek performanslı bir statik kod analiz aracıdır.
 
 ---
 
-## 🛠 Kullanılan Teknolojiler
+## 📊 Öne Çıkan Özellikler & HTML Dashboard
 
-* **Java 17+**
-* **JavaParser:** Kodları AST (Abstract Syntax Tree) yapısına dönüştürmek için.
-* **Jackson Databind:** Analiz sonuçlarını JSON formatına çevirmek için.
-* **Maven:** Bağımlılık yönetimi için.
+- 🚀 **Yüksek Performans (Multithreading):** Paralel tarama altyapısı sayesinde binlerce satırlık kod tabanlarını milisaniyeler seviyesinde tarar.
+- 🎨 **Modern HTML Dashboard:** Analiz sonuçlarını detaylı, filtrelemeye uygun ve dark-mode temalı etkileşimli bir dashboard üzerinde raporlar.
+- 🛠 **Zengin Analiz Kuralları:**
+    - 🛑 `EMPTY_CATCH_BLOCK` (Critical): Sessizce yutulan hataları ve boş catch bloklarını yakalar.
+    - ⚠️ `LONG_METHOD` (High): Okunabilirliği düşüren aşırı uzun metotları tespit eder.
+    - 🔄 `CYCLOMATIC_COMPLEXITY` (Medium): Karmaşık kontrol akışlarına sahip metotları raporlar.
+    - 🔢 `MAGIC_NUMBER` (Low): Kod içinde doğrudan kullanılan sabit sayıları tespit ederek refactoring önerir.
+- 💻 **CLI / Terminal Desteği:** Picocli entegrasyonu ile tüm komut satırı parametrelerini destekler.
+- 📄 **JSON Raporlama:** CI/CD süreçleri ve otomasyonlar için makine tarafından okunabilir JSON çıktısı üretir.
+
+### 🖼️ Ekran Görüntüsü (HTML Raporu)
+
+<p align="center">
+  <img src="docs/images/dashboard.png" alt="J-Inspector Dashboard" width="850"/>
+</p>
 
 ---
 
-## 💻 Kurulum ve Çalıştırma
+## 🛠 Mimari & Teknolojiler
 
-1.  Projeyi bilgisayarınıza klonlayın:
-    ```bash
-    git clone [https://github.com/ezgimutlu/j-inspector.git](https://github.com/ezgimutlu/j-inspector.git)
-    ```
-2.  `Main.java` dosyası içerisindeki `projectPath` değişkenine analiz etmek istediğiniz yolu yazın.
-3.  Projeyi çalıştırın.
+- **Dil:** Java 17+
+- **Ayrıştırıcı (Parser):** JavaParser (AST Analizi)
+- **Komut Satırı Arayüzü:** Picocli
+- **Raporlama:** Custom HTML/CSS Exporter & JSON Writer
+- **Derleme Aracı:** Apache Maven
 
 ---
 
-## 📊 Örnek Rapor Çıktısı (JSON)
+## 🚀 Kurulum ve Çalıştırma
 
-```json
-{
-  "type": "CYCLOMATIC_COMPLEXITY",
-  "fileName": "TestClass.java",
-  "line": 15,
-  "severity": "CRITICAL",
-  "message": "Complexity is 11 (Max allowed: 5)"
-}
+### 1. Projeyi Derleyin (Fat-JAR Oluşturma)
+```bash
+mvn clean package
