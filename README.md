@@ -1,48 +1,48 @@
-# 🔍 J-Inspector: Static Code Analysis Engine (v3.0)
+# 🔍 J-Inspector v3.0
 
-[![Java](https://img.shields.io/badge/Java-17%2B-orange.svg)](https://www.oracle.com/java/)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Presentation](https://img.shields.io/badge/Presentation-Slide_Deck-purple.svg)](docs/presentation.html)
-[![Build](https://img.shields.io/badge/Build-Passing-brightgreen.svg)]()
+![Build Status](https://github.com/ezgimutlu/j-inspector/actions/workflows/ci.yml/badge.svg)
+![Java](https://img.shields.io/badge/Java-17%2B-orange.svg)
+![Maven](https://img.shields.io/badge/Build-Maven-red.svg)
+![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
-**J-Inspector**, Java projelerinde kod kalitesini, sürdürülebilirliği ve güvenlik açıklarını analiz eden AST (Abstract Syntax Tree) tabanlı, yüksek performanslı bir statik kod analiz aracıdır.
-
----
-
-## 📊 Öne Çıkan Özellikler & HTML Dashboard
-
-- 🚀 **Yüksek Performans (Multithreading):** Paralel tarama altyapısı sayesinde binlerce satırlık kod tabanlarını milisaniyeler seviyesinde tarar.
-- 🎨 **Modern HTML Dashboard:** Analiz sonuçlarını detaylı, filtrelemeye uygun ve dark-mode temalı etkileşimli bir dashboard üzerinde raporlar.
-- 📊 **Executive Presentation:** Projenin teknik mimarisini ve kurumsal sunumunu barındıran etkileşimli [Slide Deck](docs/presentation.html).
-- 🛠 **Zengin Analiz Kuralları:**
-    - 🛑 `EMPTY_CATCH_BLOCK` (Critical): Sessizce yutulan hataları ve boş catch bloklarını yakalar.
-    - ⚠️ `LONG_METHOD` (High): Okunabilirliği düşüren aşırı uzun metotları tespit eder.
-    - 🔄 `CYCLOMATIC_COMPLEXITY` (Medium): Karmaşık kontrol akışlarına sahip metotları raporlar.
-    - 🔢 `MAGIC_NUMBER` (Low): Kod içinde doğrudan kullanılan sabit sayıları tespit ederek refactoring önerir.
-- 💻 **CLI / Terminal Desteği:** Picocli entegrasyonu ile tüm komut satırı parametrelerini destekler.
-- 📄 **JSON Raporlama:** CI/CD süreçleri ve otomasyonlar için makine tarafından okunabilir JSON çıktısı üretir.
-
-### 🖼️ Ekran Görüntüsü (HTML Raporu)
-
-<p align="center">
-  <img src="docs/images/dashboard.png" alt="J-Inspector Dashboard" width="850"/>
-</p>
+> **Java projeleri için AST tabanlı, AI Auto-Fix destekli ve CI/CD entegrasyonlu statik kod analiz motoru.**
 
 ---
 
-## 🛠 Mimari & Teknolojiler
+## ⚡ Neden J-Inspector?
+J-Inspector, Java kaynak kodlarını derlemeye ihtiyaç duymadan **Soyut Sözdizim Ağacı (AST)** seviyesinde analiz eder. Kod kalitesini artırır, güvenlik zafiyetlerini tespit eder ve geliştiriciye anında **yapay zeka destekli çözüm önerileri (AI Refactoring)** sunar.
 
-- **Dil:** Java 17+
-- **Ayrıştırıcı (Parser):** JavaParser (AST Analizi)
-- **Komut Satırı Arayüzü:** Picocli
-- **Raporlama:** Custom HTML/CSS Exporter & JSON Writer
-- **Derleme Aracı:** Apache Maven
-- **Geliştirici & Eser Sahibi:** Halise Ezgi Mutlu
+### ✨ Öne Çıkan Özellikler
+- **Core AST Engine:** JavaParser ile tam sözdizimsel kod taraması.
+- **AI Auto-Fix Engine:** İhlaller için otomatik çözüm ve refactoring önerileri.
+- **Security Analysis:** Kaynak sızıntıları (`UNCLOSED_RESOURCE`) ve gömülü şifre (`HARDCODED_CREDENTIALS`) tespiti.
+- **Automated Reporting:** Profesyonel **HTML Dashboard** ve otomasyon dostu **JSON** çıktıları.
+- **Production CI/CD:** GitHub Actions ile her `push` işleminde otomatik derleme ve self-inspection.
 
 ---
 
-## 🚀 Kurulum ve Çalıştırma
+## 🛡️ Analiz Kuralları Matrisi
 
-### 1. Projeyi Derleyin (Fat-JAR Oluşturma)
+| Kural | Şiddet | Açıklama |
+| :--- | :--- | :--- |
+| `UNCLOSED_RESOURCE` | 🔴 **CRITICAL** | Kapatılmayan veritabanı/dosya akışlarını tespit eder. |
+| `HARDCODED_CREDENTIALS` | 🔴 **CRITICAL** | Kod içine gömülmüş API Key, Token ve Şifreleri yakalar. |
+| `EMPTY_CATCH_BLOCK` | 🟠 **HIGH** | Sessizce yutulan boş catch bloklarını raporlar. |
+| `CYCLOMATIC_COMPLEXITY` | 🟡 **MEDIUM** | Karmaşıklığı yüksek metotları tespit eder. |
+| `MAGIC_NUMBER` | 🟢 **LOW** | Kod içerisindeki sabit sayısal değerleri bulur. |
+
+---
+
+## 🤖 AI Auto-Fix Engine Örneği
+
+J-Inspector bir ihlal bulduğunda HTML rapora geliştiriciye rehberlik eden otomatik öneriler basar:
+
+> 💡 **AI Fix Suggestion:** Kaynak sızıntısını önlemek için try-with-resources bloğu kullanın -> `try (FileReader fr = new FileReader(...))`
+
+---
+
+## 🛠️ Hızlı Başlangıç
+
+### 1. Projeyi Derleyin
 ```bash
-mvn clean package
+mvn clean package -DskipTests

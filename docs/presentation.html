@@ -44,14 +44,11 @@
         .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 1rem; }
         .card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.8rem; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3); }
         .card h3 { color: var(--accent-blue); font-size: 1.3rem; margin-bottom: 0.8rem; }
-        .card p, .card li { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
-        .card ul { list-style: none; }
-        .card ul li::before { content: "▹ "; color: var(--accent-purple); font-weight: bold; }
+        .card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
         .badge { display: inline-block; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-right: 0.5rem; }
         .badge-critical { background: rgba(248, 113, 113, 0.2); color: var(--accent-red); border: 1px solid var(--accent-red); }
         .badge-high { background: rgba(251, 146, 60, 0.2); color: #fb923c; border: 1px solid #fb923c; }
         .badge-info { background: rgba(56, 189, 248, 0.2); color: var(--accent-blue); border: 1px solid var(--accent-blue); }
-        code { background: #090d16; color: var(--accent-green); padding: 0.2rem 0.5rem; border-radius: 4px; font-family: monospace; font-size: 0.9rem; }
         .footer { position: absolute; bottom: 1.5rem; left: 3rem; right: 3rem; display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border-color); padding-top: 0.8rem; }
     </style>
 </head>
@@ -60,200 +57,72 @@
 <!-- Slide 1: Cover -->
 <section>
     <div class="container" style="text-align: center;">
-        <span class="badge badge-info">v3.0 PRODUCTION RELEASE</span>
+        <span class="badge badge-info">v3.0 FINAL PRODUCTION RELEASE</span>
         <h1 class="title" style="font-size: 3.5rem; margin-top: 1rem;">J-INSPECTOR</h1>
-        <p class="subtitle">Java İçin AST Tabanlı, Yüksek Performanslı Statik Kod Analiz Motoru</p>
+        <p class="subtitle">AST Tabanlı, AI Auto-Fix Destekli & CI/CD Entegre Java Statik Kod Analiz Motoru</p>
         <div style="margin-top: 2rem; color: var(--text-main);">
             <p><strong>Geliştirici & Eser Sahibi:</strong> Halise Ezgi Mutlu</p>
             <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">Telif Hakkı © 2026 Halise Ezgi Mutlu. Tüm Hakları Saklıdır. (MIT Licensed)</p>
         </div>
     </div>
-    <div class="footer"><span>J-Inspector Technical Presentation</span><span>Slide 1 / 9</span></div>
+    <div class="footer"><span>J-Inspector Executive Presentation</span><span>Slide 1 / 4</span></div>
 </section>
 
-<!-- Slide 2: Problem & Solution -->
+<!-- Slide 2: Capabilities -->
 <section>
     <div class="container">
-        <h2 class="title">1. Problem ve Çözüm Yaklaşımı</h2>
-        <p class="subtitle">Yazılım Kalitesinde Statik Kod Analizinin Rolü</p>
-        <div class="grid-2">
-            <div class="card">
-                <h3>❌ Mevcut Sorunlar</h3>
-                <ul>
-                    <li>Derleme anında fark edilmeyen mantıksal ve teknik borçlar (Technical Debt).</li>
-                    <li>Okunabilirliği düşük, karmaşık (High Cyclomatic Complexity) ve spagetti kodlar.</li>
-                    <li>Boş catch blokları yüzünden sessizce yutulan kritik sistem hataları.</li>
-                    <li>Kod içine hardcode yazılmış sihirli sayılar (Magic Numbers).</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h3>✅ J-Inspector Çözümü</h3>
-                <ul>
-                    <li><strong>AST Analizi:</strong> Kodu metin olarak değil, Soyut Sözdizim Ağacı (AST) olarak inceler.</li>
-                    <li><strong>Milisaniyelik Performans:</strong> Multithreaded mimari ile anında analiz.</li>
-                    <li><strong>Görsel Raporlama:</strong> Anlaşılır Dark-Mode HTML Dashboard ve JSON çıktıları.</li>
-                    <li><strong>CLI Entegrasyonu:</strong> CI/CD süreçlerine kolayca bağlanabilir yapıda.</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="footer"><span>Halise Ezgi Mutlu — J-Inspector</span><span>Slide 2 / 9</span></div>
-</section>
-
-<!-- Slide 3: Technical Architecture -->
-<section>
-    <div class="container">
-        <h2 class="title">2. Sistem Mimarisi & Teknoloji Yığını</h2>
-        <p class="subtitle">Modüler ve Genişletilebilir Katman Tasarımı</p>
+        <h2 class="title">1. Üretim Seviyesindeki Yetenekler</h2>
+        <p class="subtitle">Eksiksiz Tamamlanmış Endüstriyel Analiz Özellikleri</p>
         <div class="grid-3">
             <div class="card">
-                <h3>⚙️ Core Engine</h3>
-                <p><strong>Java 17+</strong> dil standartlarında yazılmış, nesne yönelimli ve katmanlı mimari.</p>
-                <br>
-                <p>Paketler: <code>analyzer</code>, <code>model</code>, <code>parser</code>, <code>util</code></p>
+                <h3>🤖 AI Auto-Fix Engine</h3>
+                <p>Tespit edilen her kural ihlali için otomatik refactoring ve çözüm kodları üretir.</p>
             </div>
             <div class="card">
-                <h3>🌳 AST Parsing</h3>
-                <p><strong>JavaParser Framework</strong> kullanılarak kodlar semantik düğümlere (AST Nodes) dönüştürülür.</p>
-                <br>
-                <p>Deseni: <code>Visitor Pattern</code> (VoidVisitorAdapter)</p>
+                <h3>⚙ GitHub Actions CI/CD</h3>
+                <p>Her push işleminde otomatik derleme, self-inspection ve rapor artifact'i üretimi.</p>
             </div>
             <div class="card">
-                <h3>💻 CLI & Reporting</h3>
-                <p><strong>Picocli</strong> entegrasyonu ile terminal komutları yönetilir. <strong>Jackson & Custom Exporter</strong> ile HTML/JSON raporlanır.</p>
+                <h3>🔒 Güvenlik & Kaynak Taraması</h3>
+                <p>Unclosed Resources ve Hardcoded Credentials ihlallerini tespit eden güvenlik katmanı.</p>
             </div>
         </div>
     </div>
-    <div class="footer"><span>Halise Ezgi Mutlu — J-Inspector</span><span>Slide 3 / 9</span></div>
+    <div class="footer"><span>Halise Ezgi Mutlu — J-Inspector</span><span>Slide 2 / 4</span></div>
 </section>
 
-<!-- Slide 4: Rule Engine -->
+<!-- Slide 3: Rules -->
 <section>
     <div class="container">
-        <h2 class="title">3. Analiz Kuralları ve Şiddet Seviyeleri</h2>
-        <p class="subtitle">J-Inspector Tarafından Otomatik Denetlenen İhlaller</p>
+        <h2 class="title">2. Gelişmiş Analiz Kuralları</h2>
+        <p class="subtitle">Güvenlik, Performans ve Clean Code Denetimleri</p>
         <div class="grid-2">
             <div class="card">
-                <h3><span class="badge badge-critical">CRITICAL</span> EMPTY_CATCH_BLOCK</h3>
-                <p>Hataların sessizce yutulduğu boş <code>catch</code> bloklarını tespit eder. Güvenlik ve debug süreçleri için kritiktir.</p>
+                <h3><span class="badge badge-critical">CRITICAL</span> UNCLOSED_RESOURCE</h3>
+                <p>Kapatılmayan akış ve veritabanı bağlantılarını bularak bellekteki kaynak sızıntılarını engeller.</p>
             </div>
             <div class="card">
-                <h3><span class="badge badge-high">HIGH</span> LONG_METHOD</h3>
-                <p>Belirlenen eşik değerden (Örn: 30 satır) daha uzun metotları yakalayarak refactoring önerir.</p>
+                <h3><span class="badge badge-critical">CRITICAL</span> HARDCODED_CREDENTIALS</h3>
+                <p>Kod içerisine gömülmüş gizli şifre, API key ve token bilgilerini tespit eder.</p>
             </div>
             <div class="card">
-                <h3><span class="badge badge-high">MEDIUM</span> CYCLOMATIC_COMPLEXITY</h3>
-                <p>İç içe geçmiş <code>if/else</code>, döngüler ve dallanmaları ölçerek karmaşıklık skoru sunar.</p>
+                <h3><span class="badge badge-high">HIGH</span> EMPTY_CATCH_BLOCK</h3>
+                <p>Sessizce yutulan exceptions bloklarını yakalar ve logging/rethrow önerileri sunar.</p>
             </div>
             <div class="card">
-                <h3><span class="badge badge-info">LOW</span> MAGIC_NUMBER</h3>
-                <p>Kod içerisinde sabitleştirilmeden (constant) doğrudan kullanılan açıklamasız sayıları bulur.</p>
+                <h3><span class="badge badge-info">MEDIUM</span> CYCLOMATIC_COMPLEXITY</h3>
+                <p>Aşırı dallanmış metotları analiz ederek spagetti kod oluşumunu engeller.</p>
             </div>
         </div>
     </div>
-    <div class="footer"><span>Halise Ezgi Mutlu — J-Inspector</span><span>Slide 4 / 9</span></div>
+    <div class="footer"><span>Halise Ezgi Mutlu — J-Inspector</span><span>Slide 3 / 4</span></div>
 </section>
 
-<!-- Slide 5: CLI Usage -->
-<section>
-    <div class="container">
-        <h2 class="title">4. Komut Satırı (CLI) Kullanımı</h2>
-        <p class="subtitle">Fat-JAR ve Esnek Parametre Desteği</p>
-        <div class="card" style="margin-bottom: 1.5rem;">
-            <h3>🚀 Derleme ve Çalıştırma Komutu</h3>
-            <p style="margin-bottom: 0.5rem;">Maven ile paketlenen tek bir JAR dosyası üzerinden çalışır:</p>
-            <code>java -jar target/j-inspector-3.0-RELEASE.jar -p . -f all -o jinspector_report</code>
-        </div>
-        <div class="grid-3">
-            <div class="card">
-                <h3><code>-p / --path</code></h3>
-                <p>Taranacak Java projesinin dizin yolunu belirtir.</p>
-            </div>
-            <div class="card">
-                <h3><code>-f / --format</code></h3>
-                <p>Çıktı formatını belirler: <code>html</code>, <code>json</code> veya <code>all</code>.</p>
-            </div>
-            <div class="card">
-                <h3><code>-o / --output</code></h3>
-                <p>Rapor dosyasının oluşturulacağı hedef adı ayarlar.</p>
-            </div>
-        </div>
-    </div>
-    <div class="footer"><span>Halise Ezgi Mutlu — J-Inspector</span><span>Slide 5 / 9</span></div>
-</section>
-
-<!-- Slide 6: HTML Dashboard -->
-<section>
-    <div class="container">
-        <h2 class="title">5. Modern HTML Dashboard</h2>
-        <p class="subtitle">Interaktif Dark-Mode Raporlama Arayüzü</p>
-        <div class="grid-2">
-            <div class="card">
-                <h3>🎨 Arayüz Özellikleri</h3>
-                <ul>
-                    <li><strong>Dark Mode Tasarımı:</strong> Göz yormayan, modern yazılımcı arayüzü.</li>
-                    <li><strong>Özet Metrik Kartları:</strong> Toplam ihlal sayısını tek bakışta sunar.</li>
-                    <li><strong>Renk Kodlu Seviyeler:</strong> Critical (Kırmızı), High (Turuncu), Low (Yeşil).</li>
-                    <li><strong>Detaylı Tablo:</strong> İhlal tipi, dosya adı, satır numarası ve çözüm mesajı.</li>
-                </ul>
-            </div>
-            <div class="card" style="display: flex; align-items: center; justify-content: center; background: #090d16;">
-                <p style="text-align: center; color: var(--accent-blue);">[ 📊 Visual Dashboard Preview ]<br><br><small style="color: var(--text-muted);">docs/images/dashboard.png</small></p>
-            </div>
-        </div>
-    </div>
-    <div class="footer"><span>Halise Ezgi Mutlu — J-Inspector</span><span>Slide 6 / 9</span></div>
-</section>
-
-<!-- Slide 7: Production Metrics & Self-Inspection -->
-<section>
-    <div class="container">
-        <h2 class="title">6. Tamamlanan Modüller & Self-Inspection Testi</h2>
-        <p class="subtitle">Üretim Standardında Tamamlanmış Yazılım Yetenekleri</p>
-        <div class="grid-3">
-            <div class="card">
-                <h3>⚡ Yüksek Performans</h3>
-                <p>Milisaniyeler içinde tamamlanan paralel dosya taraması (&lt;170ms) ve hafif bellek kullanımı (&lt;50MB RAM).</p>
-            </div>
-            <div class="card">
-                <h3>🔍 Self-Inspection</h3>
-                <p>J-Inspector kendi kod tabanını başarıyla tarayarak refactoring fırsatlarını tespit etmiş ve optimize edilmiştir.</p>
-            </div>
-            <div class="card">
-                <h3>📦 Bağımsız Fat-JAR</h3>
-                <p>Harici hiçbir bağımlılığa ihtiyaç duymadan her ortamda tek komutla çalışan paket yapısı.</p>
-            </div>
-        </div>
-    </div>
-    <div class="footer"><span>Halise Ezgi Mutlu — J-Inspector</span><span>Slide 7 / 9</span></div>
-</section>
-
-<!-- Slide 8: Intellectual Property & Security -->
-<section>
-    <div class="container">
-        <h2 class="title">7. Telif Hakları ve Yasal Koruma</h2>
-        <p class="subtitle">Fikri Mülkiyet Ve Kod Güvenliği İlkeleri</p>
-        <div class="grid-2">
-            <div class="card">
-                <h3>⚖️ MIT Lisansı Koruması</h3>
-                <p>Proje resmi **MIT Lisansı** altında korunmaktadır. Telif hakkı resmi olarak <strong>Halise Ezgi Mutlu</strong> adına tescillidir.</p>
-                <br>
-                <p>Tüm kaynak kodların ilk sahipliği ve dağıtım hakları eser sahibine aittir.</p>
-            </div>
-            <div class="card">
-                <h3>🛡️ Git Zaman Damgası Kanıtı</h3>
-                <p>GitHub üzerindeki commit geçmişi, kodların yazılış tarihini ve orijinal yapımcısını (Halise Ezgi Mutlu) dijital zaman damgasıyla doğrular.</p>
-            </div>
-        </div>
-    </div>
-    <div class="footer"><span>Halise Ezgi Mutlu — J-Inspector</span><span>Slide 8 / 9</span></div>
-</section>
-
-<!-- Slide 9: Conclusion -->
+<!-- Slide 4: Conclusion -->
 <section>
     <div class="container" style="text-align: center;">
         <h2 class="title" style="font-size: 3rem;">Teşekkürler!</h2>
-        <p class="subtitle">J-Inspector: Static Code Analysis Engine v3.0 (RELEASE)</p>
+        <p class="subtitle">J-Inspector v3.0 Final Release — Baştan Sona Tamamlanmış Açık Kaynak Proje</p>
         <div class="card" style="max-width: 600px; margin: 2rem auto;">
             <h3 style="margin-bottom: 1rem;">Geliştirici İletişim & Bağlantılar</h3>
             <p><strong>Eser Sahibi:</strong> Halise Ezgi Mutlu</p>
@@ -261,7 +130,7 @@
             <p><strong>Lisans:</strong> MIT License</p>
         </div>
     </div>
-    <div class="footer"><span>Halise Ezgi Mutlu — J-Inspector</span><span>Slide 9 / 9</span></div>
+    <div class="footer"><span>Halise Ezgi Mutlu — J-Inspector</span><span>Slide 4 / 4</span></div>
 </section>
 
 </body>
