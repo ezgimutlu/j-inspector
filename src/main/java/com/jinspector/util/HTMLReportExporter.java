@@ -66,7 +66,7 @@ public class HTMLReportExporter {
                     writer.println("<td><strong>" + escapeHtml(issue.getType()) + "</strong></td>");
                     writer.println("<td>" + escapeHtml(issue.getFile()) + "</td>");
                     writer.println("<td>" + issue.getLine() + "</td>");
-                    writer.println("<td><span class='badge " + escapeHtml(issue.getSeverity()) + "'>" + escapeHtml(issue.getSeverity()) + "</span></td>");
+                    writer.println("<td><span class='badge " + escapeHtml(issue.getSeverity().toString()) + "'>" + escapeHtml(issue.getSeverity().toString()) + "</span></td>");
                     writer.println("<td>" + escapeHtml(issue.getMessage()) + "</td>");
                     writer.println("<td class='ai-fix'>" + escapeHtml(generateAiFixSuggestion(issue.getType())) + "</td>");
                     writer.println("</tr>");
