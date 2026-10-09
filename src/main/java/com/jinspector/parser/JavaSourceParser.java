@@ -16,6 +16,18 @@ public class JavaSourceParser {
     private final List<Analyzer> analyzers = List.of(
             new MethodLengthAnalyzer(),
             new CyclomaticComplexityAnalyzer(),
+            new MaintainabilityIndexAnalyzer(),
+            new CognitiveComplexityAnalyzer(),
+            new DeadCodeAnalyzer(),
+            new ResourceLeakAnalyzer(),
+            new DeepNestingAnalyzer(),
+            new GodClassAnalyzer(),
+            new UnusedImportsAnalyzer(),
+            new NamingConventionAnalyzer(),
+            new SecurityThreatAnalyzer(),
+            new NullPointerRiskAnalyzer(),
+            new DuplicateCodeAnalyzer(),
+            new MutableStaticFieldsAnalyzer(),
             new EmptyCatchAnalyzer(),
             new MagicNumberAnalyzer(),
             new TooManyParametersAnalyzer()

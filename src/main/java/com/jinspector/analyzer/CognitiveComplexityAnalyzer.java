@@ -8,29 +8,29 @@ import com.jinspector.model.Severity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CyclomaticComplexityAnalyzer implements Analyzer {
+public class CognitiveComplexityAnalyzer implements Analyzer {
 
-    private static final int MAX_COMPLEXITY_THRESHOLD = 10;
+    private static final int MAX_COGNITIVE_THRESHOLD = 15;
 
     @Override
     public List<Issue> analyze(CompilationUnit cu, String filePath) {
         List<Issue> issues = new ArrayList<>();
 
         cu.findAll(MethodDeclaration.class).forEach(method -> {
-            ComplexityVisitor visitor = new ComplexityVisitor();
-            method.accept(visitor, null);
+            CognitiveComplexityVisitor visitor = new CognitiveComplexityVisitor();
+            method.accept(visitor, 0);
             int complexity = visitor.getComplexity();
 
-            if (complexity > MAX_COMPLEXITY_THRESHOLD) {
+            if (complexity > MAX_COGNITIVE_THRESHOLD) {
                 int lineNumber = method.getBegin().map(pos -> pos.line).orElse(0);
                 String methodName = method.getNameAsString();
 
                 issues.add(new Issue(
-                        "HIGH_CYCLOMATIC_COMPLEXITY",
-                        String.format("Method '%s' has high cyclomatic complexity of %d (Threshold is %d). Consider refactoring.",
-                                methodName, complexity, MAX_COMPLEXITY_THRESHOLD),
+                        "HIGH_COGNITIVE_COMPLEXITY",
+                        String.format("Method '%s' has high cognitive complexity of %d (Threshold is %d). Refactor nested blocks.",
+                                methodName, complexity, MAX_COGNITIVE_THRESHOLD),
                         lineNumber,
-                        Severity.MEDIUM,
+                        Severity.HIGH,
                         filePath
                 ));
             }
@@ -39,4 +39,3 @@ public class CyclomaticComplexityAnalyzer implements Analyzer {
         return issues;
     }
 }
-

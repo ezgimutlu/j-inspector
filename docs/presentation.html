@@ -18,6 +18,7 @@
           --border-color: #334155;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
+
         html {
           scroll-behavior: smooth;
           scroll-snap-type: y mandatory;
@@ -69,7 +70,7 @@
 
         <div class="card" style="max-width: 800px; margin: 2rem auto 0 auto; text-align: left;">
             <h3 style="color: var(--accent-blue); font-size: 1.1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1rem;">💡 Proje Tanımı ve Hedefi</h3>
-            <p>J-Inspector, Java projelerinde kaynak kodları derlemeye ihtiyaç duymadan <strong>Soyut Sözdizim Ağacı (AST)</strong> seviyesinde inceleyen, güvenlik zafiyetlerini (OWASP Top 10) ve kod kokularını (Code Smells) anında tespit edip <strong>Yapay Zeka Destekli Düzeltme (AI Refactoring)</strong> önerileri üreten uçtan uca bir analiz platformudur.</p>
+            <p>J-Inspector, Java projelerinde kaynak kodları derlemeye ihtiyaç duymadan <strong>Soyut Sözdizim Ağacı (AST)</strong> seviyesinde inceleyen, güvenlik zafiyetlerini (OWASP Top 10) ve kod kokularını (Code Smells) 17 farklı kural ile tespit edip <strong>Yapay Zeka Destekli Düzeltme (AI Refactoring)</strong> önerileri üreten uçtan uca bir analiz platformudur.</p>
         </div>
 
         <div style="margin-top: 2rem; color: var(--text-main);">
@@ -90,7 +91,7 @@
                 <h3 style="color: var(--accent-red);">❌ Geleneksel Yöntemlerin Sınırları</h3>
                 <ul>
                     <li><strong>Derleme Bağımlılığı:</strong> Klasik analiz araçları projenin hatasız derlenmesini gerektirir; eksik bağımlılıklarda çalışmaz.</li>
-                    <li><strong>Gözden Kaçan Zafiyetler:</strong> Bellek sızıntıları (`UNCLOSED_RESOURCE`) ve gömülü şifreler manuel code review süreçlerinde kolayca gözden kaçar.</li>
+                    <li><strong>Gözden Kaçan Zafiyetler:</strong> Bellek sızıntıları (`RESOURCE_LEAK`), `NULL_POINTER_RISK` ve gömülü şifreler manuel code review süreçlerinde kolayca gözden kaçar.</li>
                     <li><strong>Eylemsiz Raporlama:</strong> Mevcut araçlar sorunu gösterir fakat geliştiriciye yapıcı veya otomatize edilmiş bir çözüm sunmaz.</li>
                 </ul>
             </div>
@@ -98,7 +99,7 @@
                 <h3 style="color: var(--accent-green);">✅ J-Inspector Çözüm Mimarisi</h3>
                 <ul>
                     <li><strong>Compile-Free AST Parsing:</strong> JavaParser altyapısı ile kod derlenmeden sözdizimsel düğümler (Nodes) seviyesinde anında tarama.</li>
-                    <li><strong>AI Refactoring Motoru:</strong> Bulunan her ihlal tipi için context-aware (bağlama duyarlı) otomatik çözüm kodları basma.</li>
+                    <li><strong>Dinamik Konfigürasyon Engine:</strong> `jinspector.json` dosyası üzerinden dışarıdan kural açma/kapama ve threshold belirleme yeteneği.</li>
                     <li><strong>Shift-Left Security:</strong> Hataları ve güvenlik açıklarını canlıya çıkmadan, henüz commit/PR aşamasında engelleme.</li>
                 </ul>
             </div>
@@ -121,16 +122,16 @@
                 </ul>
             </div>
             <div class="card">
-                <h3>🤖 2. AI & Rule Layer</h3>
+                <h3>🤖 2. Rules & Config Layer</h3>
                 <ul>
-                    <li><strong>Analyzer Engines:</strong> Her kural için izole edilmiş dinamik analiz sınıfları.</li>
-                    <li><strong>AI Suggestion Generator:</strong> İhlal tespit edildiğinde Clean Code prensiplerine uygun çözüm üreten katman.</li>
+                    <li><strong>17 Analyzer Engines:</strong> Her analiz kuralı için izole edilmiş dinamik kural sınıfları.</li>
+                    <li><strong>JSON Config Manager:</strong> `jinspector.json` ile threshold ve rule toggle desteği.</li>
                 </ul>
             </div>
             <div class="card">
                 <h3>📊 3. Export & CI/CD Pipeline</h3>
                 <ul>
-                    <li><strong>Multi-Format Exporter:</strong> Interaktif **HTML Dashboard** ve makinece okunabilir **JSON** raporları.</li>
+                    <li><strong>Multi-Format Exporter:</strong> Interaktif **HTML Dashboard**, **JSON** ve **Console** raporlama.</li>
                     <li><strong>GitHub Actions:</strong> Automated build, self-inspection ve artifact dağıtım hattı.</li>
                 </ul>
             </div>
@@ -142,24 +143,40 @@
 <!-- Slide 4: Deep-Dive Rules Matrix -->
 <section>
     <div class="container">
-        <h2 class="title">3. Detaylı Analiz Kuralları Matrisi</h2>
-        <p class="subtitle">Güvenlik, Performans ve Mimari Kod Taramaları</p>
+        <h2 class="title">3. Detaylı Analiz Kuralları Matrisi (17 Aktif Kural)</h2>
+        <p class="subtitle">Güvenlik, Performans, Bakılabilirlik ve Mimari Kod Taramaları</p>
         <div class="grid-2">
             <div class="card">
-                <h3><span class="badge badge-critical">CRITICAL</span> UNCLOSED_RESOURCE</h3>
-                <p>Kapatılmayan `InputStream`, `FileReader` ve DB bağlantılarını tespit eder. Bellek sızıntılarını ve `OutOfMemoryError` riskini önler.</p>
+                <h3><span class="badge badge-critical">CRITICAL</span> SECURITY & MEMORY</h3>
+                <ul>
+                    <li><strong>RESOURCE_LEAK:</strong> Try-with-resources dışında açık kalan akışları bularak bellek sızıntısını önler.</li>
+                    <li><strong>SECURITY_THREAT:</strong> Hardcoded 비밀/API Key ve SQL Injection risklerini tespit eder.</li>
+                    <li><strong>NULL_POINTER_RISK:</strong> Doğrudan null hedefe yapılan metot çağrılarını yakalar.</li>
+                </ul>
             </div>
             <div class="card">
-                <h3><span class="badge badge-critical">CRITICAL</span> HARDCODED_CREDENTIALS</h3>
-                <p>Kod içerisine gömülmüş API Key, JWT Token ve DB şifrelerini regex tabanlı aramayla tespit eder. Bilgi sızıntısını engeller.</p>
+                <h3><span class="badge badge-high">HIGH</span> COMPLEXITY & METRICS</h3>
+                <ul>
+                    <li><strong>CYCLOMATIC_COMPLEXITY:</strong> McCabe formülü ($V(G) = P + 1$) ile karar noktalarını ölçer.</li>
+                    <li><strong>MAINTAINABILITY_INDEX:</strong> Halstead ve LOC ile 0-100 arası sürdürülebilirlik skoru üretir.</li>
+                    <li><strong>MUTABLE_STATIC_FIELD:</strong> Public static değişkenlerin thread-safety riskini denetler.</li>
+                </ul>
             </div>
             <div class="card">
-                <h3><span class="badge badge-high">HIGH</span> EMPTY_CATCH_BLOCK</h3>
-                <p>Hataların sessizce yutulduğu boş `catch` bloklarını raporlayarak uygulamanın kilitlenmesini ve belirsiz davranışlarını engeller.</p>
+                <h3><span class="badge badge-medium">MEDIUM</span> DESIGN & CLEAN CODE</h3>
+                <ul>
+                    <li><strong>GOD_CLASS & DEEP_NESTING:</strong> Dev sınıfları ve aşırı iç içe geçmiş blokları belirler.</li>
+                    <li><strong>DEAD_CODE & DUPLICATE_CODE:</strong> Ulaşılamaz blokları ve kopyala-yapıştır kodları tespit eder.</li>
+                    <li><strong>COGNITIVE_COMPLEXITY:</strong> Okunabilirlik ve zihinsel yük seviyesini hesaplar.</li>
+                </ul>
             </div>
             <div class="card">
-                <h3><span class="badge badge-medium">MEDIUM</span> CYCLOMATIC_COMPLEXITY</h3>
-                <p>Aşırı `if-else` ve döngü içeren yüksek karmaşıklıktaki spagetti metotları bularak refactoring yapılması gerektiğini bildirir.</p>
+                <h3><span class="badge badge-info">INFO</span> CODE SMELLS & STANDARDS</h3>
+                <ul>
+                    <li><strong>NAMING_CONVENTION:</strong> Java isimlendirme standartlarını denetler.</li>
+                    <li><strong>EMPTY_CATCH_BLOCK:</strong> Yutulan istisnaları yakalar.</li>
+                    <li><strong>UNUSED_IMPORTS & MAGIC_NUMBER:</strong> Temiz kod standartlarını zorunlu kılar.</li>
+                </ul>
             </div>
         </div>
     </div>
@@ -176,20 +193,20 @@
                 <h3>💡 AI Auto-Fix Mantığı ve Çıktısı</h3>
                 <p>HTML raporda her ihlalin yanında geliştiriciye rehberlik eden hazır kod bloğu basılır:</p>
                 <div class="code-box">
-                    // UNCLOSED_RESOURCE için AI Önerisi:<br>
+                    // RESOURCE_LEAK için AI Önerisi:<br>
                     "💡 AI Fix: Kaynak sızıntısını önlemek için try-with-resources bloğu kullanın -> try (FileReader fr = new FileReader(...))"<br><br>
                     // HARDCODED_CREDENTIALS için AI Önerisi:<br>
                     "💡 AI Fix: Şifre/Token bilgilerini koda gömmek yerine System.getenv(\"SECRET_KEY\") ile okuyun."
                 </div>
             </div>
             <div class="card">
-                <h3>💻 CLI Çalıştırma Komutları</h3>
-                <p>Proje terminal üzerinden parametrik olarak kolayca çalıştırılabilir:</p>
+                <h3>💻 CLI Çalıştırma Komutları (picocli)</h3>
+                <p>Proje terminal üzerinden esnek parametrelerle kolayca çalıştırılabilir:</p>
                 <div class="code-box">
                     # 1. Projeyi derleyin ve JAR paketi oluşturun<br>
                     mvn clean package -DskipTests<br><br>
-                    # 2. Statik analizi başlatın (Tüm formatlarda rapor üretir)<br>
-                    java -jar target/j-inspector-3.0-RELEASE-jar-with-dependencies.jar -p . -f all -o report
+                    # 2. Özel konfigürasyon ve format seçeneği ile analizi başlatın<br>
+                    java -jar target/j-inspector-3.0-RELEASE.jar -p . -c jinspector.json -f html -o report
                 </div>
             </div>
         </div>
@@ -206,7 +223,7 @@
         <div class="card" style="max-width: 700px; margin: 1.5rem auto; text-align: left;">
             <h3 style="margin-bottom: 0.8rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">📌 Proje & Geliştirici Özet Bilgileri</h3>
             <p style="margin-bottom: 0.5rem;"><strong>Eser Sahibi & Lead Developer:</strong> Halise Ezgi Mutlu</p>
-            <p style="margin-bottom: 0.5rem;"><strong>Teknoloji Stack:</strong> Java 17+, JavaParser, Maven, GitHub Actions, HTML5/CSS3</p>
+            <p style="margin-bottom: 0.5rem;"><strong>Teknoloji Stack:</strong> Java 17+, JavaParser, Maven, picocli, GitHub Actions, HTML5/CSS3</p>
             <p style="margin-bottom: 0.5rem;"><strong>GitHub Repository:</strong> github.com/ezgimutlu/j-inspector</p>
             <p><strong>Lisans Türü:</strong> MIT License (Telif Hakkı © 2026)</p>
         </div>
@@ -215,4 +232,4 @@
 </section>
 
 </body>
-</html>
+</html>ß
